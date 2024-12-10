@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app2-app
+  template:
+    metadata:
+      labels:
+        app: app2-app
+    spec:
+      containers:
+        #- name: app2-jdk17-sp3
+        #  image: app2-jdk17-sp3
+        - name: app2-app
+          image: app2-app
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"

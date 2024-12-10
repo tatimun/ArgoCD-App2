@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../../base
+images:
+  - name: app2-app
+    newName: image-registry.openshift-image-registry.svc:5000/prod-project1/app2-app
+    newTag: master
+patches:
+- path: patch.yaml
+  target:
+    kind: ImageStream
+    labelSelector: app=app2-app

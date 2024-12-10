@@ -1,0 +1,26 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: app2-app
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      from:
+        kind: ImageStreamTag
+        name: app2-app:v0.0.1-SNAPSHOT-20241024015506
+      importPolicy:
+        insecure: true
+        importMode: Legacy
+      referencePolicy:
+        type: Local
+    - name: v0.0.1-SNAPSHOT-20241024015506
+      from:
+        kind: DockerImage
+        name: quay.io/prueba-gitops/app2-app:v0.0.1-SNAPSHOT-20241024015506
+      importPolicy:
+        insecure: true
+        importMode: Legacy
+      referencePolicy:
+        type: Local

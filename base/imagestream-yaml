@@ -1,0 +1,24 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: app2-app
+  labels:
+    app: app2-app
+    app.kubernetes.io/component: app2-app
+    app.kubernetes.io/instance: app2-app
+    app.kubernetes.io/name: app2-app
+    app.kubernetes.io/part-of: app2-app-app
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: 1.0.0-SNAPSHOT
+      annotations: null
+      from:
+        kind: DockerImage
+        name: image-registry.openshift-image-registry.svc:5000/dev-project1/app2-app:1.0.0-SNAPSHOT
+      importPolicy:
+        insecure: true
+        importMode: Legacy
+      referencePolicy:
+        type: Local

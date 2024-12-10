@@ -1,0 +1,8 @@
+resources:
+  - deployment.yaml
+  - imagestream.yaml
+
+configMapGenerator:
+  - name: cm-app2-app
+    files:
+    - application.yaml
